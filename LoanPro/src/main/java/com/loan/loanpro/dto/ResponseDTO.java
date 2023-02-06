@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude
 public class ResponseDTO<T> implements Serializable {
 
     private ResultObject result;
@@ -29,7 +28,7 @@ public class ResponseDTO<T> implements Serializable {
     public static <T> ResponseDTO<T> ok() {
         return new ResponseDTO<>(ResultObject.getSuccess());
     }
-
+    //오버로딩->다형성 보장
     public static <T> ResponseDTO<T> ok(T data) {
         return new ResponseDTO<>(ResultObject.getSuccess(), data);
     }

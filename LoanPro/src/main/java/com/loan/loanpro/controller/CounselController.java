@@ -27,4 +27,10 @@ public class CounselController extends AbstController {
     public ResponseDTO<Response> get(@PathVariable Long counselId){
         return ok(counselService.get(counselId));
     }
+
+    @Description("대출 상담 정보 수정")
+    @PutMapping("/{counselId}")
+    public ResponseDTO<Response> update(@PathVariable Long counselId,@RequestBody Request request){
+        return ok(counselService.update(counselId,request));
+    }
 }
