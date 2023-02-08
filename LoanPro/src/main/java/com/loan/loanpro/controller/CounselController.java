@@ -33,4 +33,11 @@ public class CounselController extends AbstController {
     public ResponseDTO<Response> update(@PathVariable Long counselId,@RequestBody Request request){
         return ok(counselService.update(counselId,request));
     }
+
+    @Description("대출 상담 정보 삭제")
+    @DeleteMapping("/{counselId}")
+    public ResponseDTO<Response> delete(@PathVariable Long counselId){
+        counselService.delete(counselId);
+        return ok();
+    }
 }

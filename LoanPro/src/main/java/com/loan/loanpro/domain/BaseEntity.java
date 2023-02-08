@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 
 @JsonInclude //원하는 값만 json으로 변환
 @Getter
+@Setter
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor

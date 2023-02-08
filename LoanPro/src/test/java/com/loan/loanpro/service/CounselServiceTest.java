@@ -1,5 +1,6 @@
 package com.loan.loanpro.service;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
 import com.loan.loanpro.domain.Counsel;
@@ -103,5 +104,20 @@ public class CounselServiceTest {
         assertThat(actual.getCounselId()).isSameAs(findId); //id같나?
         assertThat(actual.getName()).isSameAs("mimi"); //이름같니?
 
+    }
+    @Test
+    void CounselService에서_delete할때_isDelete가_true가되는지(){
+        Long findId=1L;
+
+        Counsel entity=Counsel.builder()
+                .counselId(1L)
+                .build();
+        when(counselRepository.save(ArgumentMatchers.any(Counsel.class))).thenReturn(entity);
+        when(counselRepository.findById(findId)).thenReturn(Optional.ofNullable(entity));
+
+        counselService.delete(findId);
+        System.out.println(entity.getIsDeleted());
+
+        assertThat(entity.getIsDeleted()).isSameAs(true);
     }
 }

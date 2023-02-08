@@ -22,12 +22,9 @@ public class CounselServiceImpl implements CounselService{
     public Response create(Request request){
        // System.out.println(request.getCellPhone());
         Counsel counsel=modelMapper.map(request,Counsel.class);//요청값이 Counsel 엔티티로 매핑
-        System.out.println(counsel.getAddress());
-        System.out.println(request.getCellPhone());
-        counsel.builder().
-                appliedDate(LocalDateTime.now()).
-                build();
-//    counsel.setAppliedDate(LocalDateTime.now());
+//        System.out.println(counsel.getAddress());
+//        System.out.println(request.getCellPhone());
+        counsel.setAppliedDate(LocalDateTime.now());
 //        System.out.println(counsel.getAddress()+counsel.getCellPhone());
         Counsel created=counselRepository.save(counsel);
         System.out.println(created.getAddress()+created.getEmail());
@@ -47,18 +44,34 @@ public class CounselServiceImpl implements CounselService{
         Counsel counsel=counselRepository.findById(counselId).orElseThrow(()->{
             throw new BaseException(ResultType.SYSTEM_ERROR);
         });
+        counsel=counsel.builder().
+                counselId(counsel.getCounselId()).
+                isDeleted(counsel.getIsDeleted()).
+                appliedDate(counsel.getAppliedDate()).
+                createdDate(counsel.getCreatedDate()).
+                updatedDate(LocalDateTime.now()).
+                name(request.getName()).
+                cellPhone(request.getCellPhone()).
+                email(request.getEmail()).
+                salary(request.getSalary()).
+                memo(request.getMemo()).
+                age(request.getAge()).
+                address(request.getAddress()).
+                addressDetail(request.getAddressDetail()).
+                zipCode(request.getZipCode()).
+                build();
 
-        counsel.setName(request.getName());
-        counsel.setCellPhone(request.getCellPhone());
-        counsel.setEmail(request.getEmail());
-        counsel.setMemo(request.getMemo());
-        counsel.setSalary(request.getSalary());
-        counsel.setAge(request.getAge());
-        counsel.setAddress(request.getAddress());
-        counsel.setAddressDetail(request.getAddressDetail());
-        counsel.setZipCode(request.getZipCode());
-
+//        System.out.println(counsel.getName()+request.getName()+counsel.getCounselId());
         counselRepository.save(counsel);
         return modelMapper.map(counsel,Response.class);
+    }
+
+    @Override
+    public void delete(Long counselId) {
+        Counsel counsel=counselRepository.findById(counselId).orElseThrow(()->{
+            throw new BaseException(ResultType.SYSTEM_ERROR);
+        });
+        counsel.setIsDeleted(true);
+        counselRepository.save(counsel);
     }
 }
