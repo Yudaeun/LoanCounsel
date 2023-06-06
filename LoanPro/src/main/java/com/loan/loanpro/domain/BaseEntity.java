@@ -8,24 +8,19 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 //기본적으로 정의되어 있어야 하는 컬럼들
 
-@JsonInclude //원하는 값만 json으로 변환
+@JsonInclude(JsonInclude.Include.NON_NULL)//원하는 값만 json으로 변환
 @Getter
 @Setter
-@SuperBuilder
-@NoArgsConstructor
-@AllArgsConstructor
 @MappedSuperclass //객체의 입장에서 공통 속성 상속
 @EntityListeners(AuditingEntityListener.class) //중복컬럼에 시간 데이터 매핑
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
     @CreatedDate
     @Column(updatable=false,columnDefinition = "datetime default CURRENT_TIMESTAMP NOT NULL COMMENT '생성일자")
     private LocalDateTime createdDate; //읽기전용, 생성일자는 바뀌면 안됨

@@ -12,10 +12,12 @@ import java.time.LocalDateTime;
 @Service
 @RequiredArgsConstructor
 public class ApplicationServiceImpl implements ApplicationService {
+
     private final ApplicationRepository applicationRepository;
     private final ModelMapper modelMapper;
+
     @Override
-    public Object create(Object request) {
+    public ApplicationDTO.Response create(ApplicationDTO.Request request) {
         Application application=modelMapper.map(request,Application.class);
         application.setAppliedTime(LocalDateTime.now());
 

@@ -15,19 +15,24 @@ public class ApplicationDTO implements Serializable {
     @Setter
     public static class Request{
         private String name;
-        private String cellphone;
+        private String cellPhone;
         private String email;
-        private BigDecimal homeAmount;
+        private BigDecimal hopeAmount;
     }
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    @Getter
+    @Setter
     public static class Response{
         private String name;
-        private String cellphone;
+        private String cellPhone;
         private String email;
-        private BigDecimal homeAmount;
+        private BigDecimal hopeAmount;
         private Long appId;
-        private LocalDateTime appliedAt;
-        private LocalDateTime createAt;
-        private LocalDateTime updateAt;
+        private LocalDateTime appliedTime;
+        private LocalDateTime createdDate;
+        private LocalDateTime updatedDate;
 
     }
 }

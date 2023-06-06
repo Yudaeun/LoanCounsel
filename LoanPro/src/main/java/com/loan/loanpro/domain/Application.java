@@ -1,9 +1,6 @@
 package com.loan.loanpro.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import net.bytebuddy.asm.Advice;
 import org.hibernate.annotations.DynamicInsert;
@@ -18,7 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@SuperBuilder
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicInsert
@@ -33,7 +30,7 @@ public class Application extends BaseEntity{
     private String name;
 
     @Column(columnDefinition = "varchar(13) DEFAULT NULL COMMENT '전화번호'")
-    private String cellphone;
+    private String cellPhone;
 
     @Column(columnDefinition = "varchar(50) DEFAULT NULL COMMENT '신청자 이메일'")
     private String email;

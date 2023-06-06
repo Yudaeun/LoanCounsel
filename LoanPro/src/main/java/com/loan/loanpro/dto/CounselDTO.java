@@ -24,6 +24,7 @@ public class CounselDTO implements Serializable {
         private Integer age;
         private Integer salary;
         private Boolean isWork;
+        private Boolean isDeleted;
 
     }
 
@@ -45,6 +46,7 @@ public class CounselDTO implements Serializable {
         private Integer age;
         private Integer salary;
         private Boolean isWork;
+        private Boolean isDeleted;
         private LocalDateTime appliedDate;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;

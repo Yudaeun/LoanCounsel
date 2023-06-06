@@ -46,10 +46,7 @@ public class CounselServiceImpl implements CounselService{
         });
         counsel=counsel.builder().
                 counselId(counsel.getCounselId()).
-                isDeleted(counsel.getIsDeleted()).
                 appliedDate(counsel.getAppliedDate()).
-                createdDate(counsel.getCreatedDate()).
-                updatedDate(LocalDateTime.now()).
                 name(request.getName()).
                 cellPhone(request.getCellPhone()).
                 email(request.getEmail()).
