@@ -1,5 +1,6 @@
 package com.loan.loanpro.service;
 
+
 import com.loan.loanpro.dto.ApplicationDTO;
 
 public interface ApplicationService {
@@ -7,4 +8,6 @@ public interface ApplicationService {
     ApplicationDTO.Response get(Long applicationId);
     ApplicationDTO.Response update(Long applicationId, ApplicationDTO.Request request);
     void delete(Long applicationId);
+    Boolean acceptTerms(Long applicationId, ApplicationDTO.AcceptTerms request);
+
 }

@@ -6,6 +6,7 @@ import net.bytebuddy.asm.Advice;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ApplicationDTO implements Serializable {
     @NoArgsConstructor
@@ -34,5 +35,14 @@ public class ApplicationDTO implements Serializable {
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
 
+    }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    @Getter
+    @Setter
+    public static class AcceptTerms{
+        List<Long> acceptTermsIds;
     }
 }
